@@ -10,5 +10,5 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
+// App component is the root element here, as thats what we are giving to ReactDOM in index.js to render it.
 reportWebVitals();
