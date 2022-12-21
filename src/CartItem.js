@@ -1,9 +1,10 @@
 import React from "react";
 
 // "cartItem" is a class based React component while "App" is a function based React component. 
-class CartItem extends React.Component{
+class CartItem extends React.Component{ 
+    // Here, the class "CartItem" is inheriting from the "Component" class of the "React" (This is required when we need to access some variables of the parent class); therefore in order to create the constructor for "CartItem" class, we need to call the constructor of the parent class first (i.e., Component class) using "super()" 
     constructor(){
-        super();
+        super();    // If super isn't called, we will have the error :- ReferenceError : Must call super constructor in derived class before accessing "this" or returning from derived constructor. 
         this.state = {
             title : "Phone" ,
             price : 999,
@@ -130,3 +131,4 @@ const styles = {
         background : '#ccc'
     }
 }
+

@@ -1,3 +1,19 @@
+/*
+In ReactJS, the props are a type of object where the value of attributes of a tag is stored. The word “props” implies “properties”, and its working functionality is quite similar to HTML attributes. 
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. 
+What are props and state in React?
+While both hold information that influences the output of render, they are different in one important way: props get passed to the component (similar to function parameters) whereas state is managed within the component (similar to variables declared within a function). 
+Props are used to pass data from one component to another. The state is a local data storage that is local to the component only and cannot be passed to other components. The this. setState property is used to update the state values in the component. 
+In the case of class components, when the state of the component is changed then the render method is called. Whereas, function components render the interface whenever the props are changed.
+
+Should I use functional component or class components in React?
+If you want consistency between all components in your codebase, go with classes. Class Components should be preferred whenever we have the requirement with the state of the component. 
+Functional component are much easier to read and test because they are plain JavaScript functions without state or lifecycle-hooks. You end up with less code. They help you to use best practices.
+
+There is an opinion that functional components show a greater performance compared to class components. The point is that the React functional element is a simple object with 2 properties: type(string) and props(object). To render such a component React needs to call the function and pass props – that is all.
+ */
+
+
 import CartItem from './CartItem.js';
 
 function App() {
