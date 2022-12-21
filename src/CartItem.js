@@ -10,6 +10,73 @@ class CartItem extends React.Component{
             qty : 1, 
             img : ""
         }
+        // this.increaseQuantity = this.increaseQuantity.bind(this);
+    }
+
+/*
+    increaseQuantity(){
+        // console.log("plus testing");
+        /#
+           console.log("this.state", this.state);
+           OUTPUT in console : Cannot read property "state" of undefined
+           console.log("this", this);
+           OUTPUT in console : this undefined
+           COMMENT : In JavaScript, the this keyword refers to an object. Which object depends on how this is being invoked (used or called). 
+            In an object method, this refers to the object.
+            Alone, this refers to the global object.
+            In a function, this refers to the global object.
+            In a function, in strict mode, this is undefined.
+            In an event, this refers to the element that received the event.
+            Methods like call(), apply(), and bind() can refer this to any object.
+            this is not a variable. It is a keyword. You cannot change the value of this.
+            
+            Further for understanding how to resolve this issue, lets go through this example (which you could cross check on console): 
+
+            class Vehicle{
+                constructor(company){
+                    this.company = company;
+                }
+                getCompany(){
+                    console.log("this", this);
+                    console.log("this.company", this.company);
+                }
+            }
+            var car = new Vehicle ("Audi");
+            car.getCompany();    /#  OUTPUT : this > Vehicle {company : "Audi"}
+                                              this.company Audi  #/
+            var func = car.getCompany;
+            func();     /#   OUTPUT :  this undefined
+                                       Cannot read property "company" of undefined
+            
+            // This issue can be solved by binding. We will bind the "getCompany" function with the "car" object :
+            
+            var func = car.getCompany.bind(car);
+            func();     /#   OUTPUT : this > Vehicle {company : "Audi"}
+                                      this.company Audi  #/
+
+            #/
+
+        /# Thus in our case, one way to solve the "this" issue is by binding "this" to "increaseQuantity" function inside the onClick property of image tags as :   "onClick={this.increaseQuantity.bind(this)}"
+        Another way to tackle the issue is by performing the binding inside the constructor function. But that would require hardcode binding of every EventHandler and thus a lot messier. 
+        The best approach to tackle this issue is via use of arrow functions. Unlike regular functions, arrow functions do not have their own this . The value of this inside an arrow function remains the same throughout the lifecycle of the function and is always bound to the value of this in the closest non-arrow parent function.
+
+        Thus, arrow function will automatically bind the value of "this" to the instance of the class "CartItem".
+        #/
+    }
+*/
+
+    increaseQuantity = () => {
+        // console.log("this.state", this.state);
+    }
+
+    decreaseQuantity = () => {
+        // console.log("minus testing");
+
+    }
+
+    deleteItem = () => {
+        // console.log("delete testing");
+
     }
 
     render(){
@@ -31,9 +98,21 @@ class CartItem extends React.Component{
 
                     <div className="cart-item-actions">
                         {/* Buttons */}
-                        <img alt="Increase" className="action-icons" src="https://cdn-icons-png.flaticon.com/128/8922/8922789.png"  />
-                        <img alt="Decrease" className="action-icons" src="https://cdn-icons-png.flaticon.com/128/8922/8922772.png" />
-                        <img alt="Delete" className="action-icons" src="https://cdn-icons-png.flaticon.com/128/9153/9153963.png" />
+                        <img 
+                            alt="Increase" 
+                            className="action-icons" 
+                            src="https://cdn-icons-png.flaticon.com/128/8922/8922789.png"  
+                            // onClick={this.increaseQuantity.bind(this)}
+                            onClick={this.increaseQuantity}
+
+                        />
+                        <img 
+                            alt="Decrease" 
+                            className="action-icons" 
+                            src="https://cdn-icons-png.flaticon.com/128/8922/8922772.png" 
+                            onClick={this.decreaseQuantity}
+                        />
+                        <img alt="Delete" className="action-icons" src="https://cdn-icons-png.flaticon.com/128/9153/9153963.png" onClick={this.deleteItem}/>
                     </div>
                 </div>
             </div>
