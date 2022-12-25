@@ -12,7 +12,38 @@ class CartItem extends React.Component{
             img : ""
         }
         // this.increaseQuantity = this.increaseQuantity.bind(this);
+        // this.testing();
     }
+
+/* NOTE : setState() in depth : 
+In the previous sessions we learnt that React performs batching by default, and that setState call is an asynchronous call. But thats not always true. Its true only in the case of React Event handlers. But in some cases like when we make ajax calls, or when we are using promises, React doesn't do batching (nor the setState calls are asynchronous) inside those. 
+
+testing(){
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('done');
+        },5000);
+    });
+    promise.then(() => {
+        this.setState({qty : 100});
+        console.log('state', this.state);
+
+        // In case of React event handlers, we wouldn't have been able to access up to date state (i.e. qty=100) but would rather have had old state (i.e. qty=1) due to asynchronous nature of setState fxn inside React event handlers. But here, when we call testing fxn above and then setState fxn withit it will act like a synchronous fxn and therefore the value of state that we get from here will be up to date (i.e. qty=100) 
+        
+        // If we replace the above two lines of code with bottom four lines :  
+        this.setState({qty : this.state.qty + 10});
+        this.setState({qty : this.state.qty + 10});
+        this.setState({qty : this.state.qty + 10});
+        console.log('state', this.state);
+
+        // What normally used to happen under event handlers was asynchronous setState call and also default batching. But inside promise, those things would no longer happen. In fact, rendering of the component would happen thrice here and the value of qty that we will get in console will be 31 (i.e., [((1+10)+10)+10] )
+
+        // All these nuisances would hopefully be taken care of in future versions of React (17 and upwards) and then default batching + asynchronous nature of setState calls would stay consistent throughout event handlers, ajax calls and promises.
+
+    });
+}
+
+*/
 
 /*
     increaseQuantity(){
@@ -72,8 +103,17 @@ class CartItem extends React.Component{
         console.log("this.state", this.state); 
         // Increasing quantity like this results in "qty" being updated in the object "this.state" ; but the updated quantity doesn't show up in the UI. The reason being React not knowing that the state has been modified so that it can refresh/re-render the component. 
         */
-        // In order to make sure that the React gets to know about the updates in the state, we have the function called "setState" which is inherited from the "React.Component" class. We have two ways of using it : - 
+        // In order to make sure that the React gets to know about the updates in the state, we have the function called "setState" which is inherited from the "React.Component" class.
+       
+       /* In React, setState is a method used to update the state of a component. It takes an object or a function as an argument, which contains the data that you want to update in the state.
 
+Batching is a technique used to improve the performance of setState by reducing the number of times that the component's render method is called. By default, React batches updates to the component's state and re-renders the component as a single batch. This means that if you call setState multiple times within a short period of time, React will wait until all of the updates have been processed before re-rendering the component. For example, every time the button is clicked, the component's state is updated and the component is re-rendered. Because of batching, multiple updates to the state within a short period of time will only result in a single re-render.
+*/
+        
+
+
+
+        // We have two ways of using it : - 
         // setState form 1 : via passing an object : Use this form when accessing of previous state isn't required to perform a change on the state. For instance, changing of "qty" does require the previous state but "title" doesn't.
         this.setState({
             // qty : this.state.qty + 1  //quantity should ideally be handled in the form 2
@@ -81,7 +121,7 @@ class CartItem extends React.Component{
         });
         // Behind the scenes, React will take this object and will merge it to this.state via shallow merging (only making changes to the modified properties leaving other key value pairs untouched. In this case, title,price&img will remain untouched) and then will re-render our component with the updated state data.
 
-        // setState form 2 : via passing a callback function : Use this form when you require the previous state to perform a change on the state. 
+        // setState form 2 : via passing a callback function which returns an object from within : Use this form when you require the previous state to perform a change on the state. 
         this.setState( (prevState) => {
             return{
                 qty : prevState.qty + 1
@@ -127,7 +167,7 @@ class CartItem extends React.Component{
         //When we call this.setState (with previous state as a parameter) multiple times inside an event handler function, those all calls will be merged by the React into a single call (a process called batching) and thus rendering of the component will only happen once (but change in the value of "qty" in the above example will be +6, which is an aggregate effect of all the calls made. This happened because all the calls got lined up in a queue and then got executed one by one). 
 */
         // console.log(this.state);
-        // Our setState call is asynchronous, i.e., we can't definitively know when a particular call actually finishes. So when we try to print something like this.state as we did above, the value that gets printed wouldn't necessarily be the latest one(in fact could be older one). The value printed could soon become the outdated one, as there might be a setState call in the queue pending to get executed which ones executed at some later time will alter the value of this.state. To tackle this issue, React gives us an option to pass two callback functions to this.setState() function (for both form 1 and form 2), where the second callback fxn gets executed only after the first callback fxn has been executed completely : 
+        // Our setState call is asynchronous, i.e., we can't definitively know when a particular call actually finishes. So when we try to print something like this.state as we did above, the value that gets printed wouldn't necessarily be the latest one(in fact could be older one). The value printed could soon become the outdated one, as there might be a setState call in the queue pending to get executed which once executed at some later time will alter the value of this.state. To tackle this issue, React gives us an option to pass two callback functions to this.setState() function (for both form 1 and form 2), where the second callback fxn gets executed only after the state has been updated and the component has re-rendered : 
         /* 
             this.setState( (prevState) => {
                 return{
@@ -137,6 +177,8 @@ class CartItem extends React.Component{
                 console.log("this.state", this.state);
             });
         */
+
+            // What happens when you call setState() inside render() method? Ans.: Stack Overflow Error ( Call to setState() invokes render().It gets into an infinite loop.)
     }
 
     decreaseQuantity = () => {
