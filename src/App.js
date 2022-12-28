@@ -13,14 +13,17 @@ Functional component are much easier to read and test because they are plain Jav
 There is an opinion that functional components show a greater performance compared to class components. The point is that the React functional element is a simple object with 2 properties: type(string) and props(object). To render such a component React needs to call the function and pass props – that is all.
  */
 
-
-import CartItem from './CartItem.js';
+import React from 'react';
+// import CartItem from './CartItem.js';
+import Cart from './Cart.js';
 
 function App() {
   return (
     <div className="App">
       {/* <h1> Cart </h1> */}
-        <CartItem/>
+        {/* <CartItem/> */}
+        <Cart/>
+
     </div>
   );
 }
