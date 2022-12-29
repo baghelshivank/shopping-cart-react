@@ -18,17 +18,122 @@ import React from 'react';
 import Cart from './Cart.js';
 import Navbar from './Navbar.js';
 
-function App() {
-  return (
-    <div className="App">
-      {/* <h1> Cart </h1> */}
-      {/* <CartItem/> */} 
-      
-        <Navbar />
-        <Cart/>
+// function App() {        // We are going to move state from Cart.js to App.js, therefore converting App.js to class component.
+class App extends React.Component {
 
-    </div>
-  );
+  constructor(){
+    super();   
+    this.state = {
+       products : [
+        {
+            title : "Watch" ,
+            price : 999,
+            qty : 1, 
+            img : "",
+            id : 1
+        },
+        {
+            title : "Phone" ,
+            price : 9999,
+            qty : 1, 
+            img : "",
+            id : 2
+        },
+        {
+            title : "Laptop" ,
+            price : 99999,
+            qty : 1, 
+            img : "",
+            id : 3
+        },
+        {
+            title : "Tablet" ,
+            price : 35000,
+            qty : 1, 
+            img : "",
+            id : 4
+        },
+        {
+            title : "Earpods" ,
+            price : 999,
+            qty : 1, 
+            img : "",
+            id : 5
+        }
+       ]
+    }
+  }
+
+  handleIncreaseQuantity = (product) => {
+    console.log("hey please increase the quantity of ", product); 
+    const { products } = this.state;
+    const index = products.indexOf(product);
+    products[index].qty += 1;
+    this.setState({
+        products: products
+    });
+  } 
+
+  handleDecreaseQuantity = (product) => {
+    console.log("hey please decrease the quantity of ", product);
+    const { products } = this.state;
+    const index = products.indexOf(product);
+    if (products[index].qty > 1) {
+        products[index].qty -= 1;
+    }
+    this.setState({
+        products: products
+    });
+  }
+
+// handleDeleteItem = (id) => {
+//     const { products } = this.state;
+//     const items = products.filter((item) => item.id !== id);
+//     this.setState({
+//         products: items
+//     });
+// }
+
+  handleDeleteItem = (product) => {
+    console.log("hey please delete the item", product);
+    const { products } = this.state;
+    const index = products.indexOf(product);
+    products.splice(index, 1);
+    this.setState({
+        products: products
+    });
+  }
+
+  getCartCount = () => {
+      const { products } = this.state;
+      let count = 0;
+      products.forEach(product => {
+          count += product.qty;
+      });
+      return count;
+  }
+
+
+  render(){
+    const {products} = this.state ;
+    return (
+      <div className="App">
+        {/* <h1> Cart </h1> */}
+        {/* <CartItem/> */} 
+
+        <Navbar 
+        count={this.getCartCount()}
+        />
+        <Cart
+         products={products}
+         onIncreaseQuantity={this.handleIncreaseQuantity} 
+         onDecreaseQuantity={this.handleDecreaseQuantity}
+         onDeleteItem={this.handleDeleteItem}
+        />
+
+      </div>
+    );
+  }
 }
 
 export default App;

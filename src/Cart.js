@@ -1,7 +1,11 @@
 import React from "react";
 import CartItem from "./CartItem";
 
-class Cart extends React.Component {
+// class Cart extends React.Component {
+const Cart = (props) => {
+
+
+/*
 
     constructor(){
         super();   
@@ -55,7 +59,7 @@ class Cart extends React.Component {
             products: products
         });
     } 
-    
+
     handleDecreaseQuantity = (product) => {
         console.log("hey please decrease the quantity of ", product);
         const { products } = this.state;
@@ -86,11 +90,14 @@ class Cart extends React.Component {
         });
     }
     
+*/
 
-    render(){
+    // render(){
+
         // const arrr = [1,2,"some string",4,5];
         // const arr = [1,2,3,4,5];
-        const {products} = this.state ;
+        // const {products} = this.state ;
+        const {products} = props;
         return(
             // <div> CART </div>
             <div className="cart">
@@ -122,9 +129,15 @@ class Cart extends React.Component {
                             // isloggedin={false}
                             // comp={<CartItem/>}
 
-                            onIncreaseQuantity={this.handleIncreaseQuantity} 
-                            onDecreaseQuantity={this.handleDecreaseQuantity}
-                            onDeleteItem={this.handleDeleteItem}
+                            // onIncreaseQuantity={this.handleIncreaseQuantity} 
+                            // onDecreaseQuantity={this.handleDecreaseQuantity}
+                            // onDeleteItem={this.handleDeleteItem}
+
+                            onIncreaseQuantity={props.onIncreaseQuantity} 
+                            onDecreaseQuantity={props.onDecreaseQuantity}
+                            onDeleteItem={props.onDeleteItem}
+
+
                             />);
                     })
                 }
@@ -134,9 +147,10 @@ class Cart extends React.Component {
             // We are passing id as an attribute to our each CartItem. The reason being lets say we have thousand "product"/components to render and if we need to make change to only one of the component, React has no way of differentiating between components (as they all go with the common name "CartItem"). Therefore we are passing id as well to each of them which wouldn't be displayed on the client side but is just for internal react purposes.  
             // Keys used within arrays should be unique among their siblings. However, they don’t need to be globally unique. 
 
-        );
-    }
+    );
 }
+
+// }
 
 export default Cart;
 
