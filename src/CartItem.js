@@ -3,6 +3,8 @@ import React from "react";
 // "cartItem" is a class based React component while "App" is a function based React component. 
 class CartItem extends React.Component{ 
     // Here, the class "CartItem" is inheriting from the "Component" class of the "React" (This is required when we need to access some variables of the parent class); therefore in order to create the constructor for "CartItem" class, we need to call the constructor of the parent class first (i.e., Component class) using "super()" 
+
+/*
     constructor(){
         super();    // If super isn't called, we will have the error :- ReferenceError : Must call super constructor in derived class before accessing "this" or returning from derived constructor. 
         this.state = {
@@ -14,6 +16,7 @@ class CartItem extends React.Component{
         // this.increaseQuantity = this.increaseQuantity.bind(this);
         // this.testing();
     }
+*/
 
 /* NOTE : setState() in depth : 
 In the previous sessions we learnt that React performs batching by default, and that setState call is an asynchronous call. But thats not always true. Its true only in the case of React Event handlers. But in some cases like when we make ajax calls, or when we are using promises, React doesn't do batching (nor the setState calls are asynchronous) inside those. 
@@ -199,12 +202,24 @@ Batching is a technique used to improve the performance of setState by reducing 
     }
 
     render(){  
+        // console.log("this.props :", this.props);
+
         // console.log("render");  //to keep track how many times our component got rendered while experimenting with this.State
 
         // Instead of using this.state.blahblah everytime, we will destructure "this" and make things easier : 
-        const {title, price, qty} = this.state ;
+        // const {title, price, qty} = this.state ;
+
+        // As now we know that props passed from Cart are available here in CartItem, so instead of using state to fill in product details, we will use props to fill in those details. 
+        // const {title, price, qty} = this.state ;
+        // const {title, price, qty} = this.props ;
+
+        const {title, price, qty, /*id*/ } = this.props.product ;
+        const {product, onIncreaseQuantity, onDecreaseQuantity, onDeleteItem} = this.props ;
+
         return(
             <div className="cart-item">
+                {/* {this.props.jsx} */}
+                {/* {console.log(this.props)} */}
                 <div className="left-block">
                     <img style={styles.image}></img>
                 </div>
@@ -224,16 +239,28 @@ Batching is a technique used to improve the performance of setState by reducing 
                             className="action-icons" 
                             src="https://cdn-icons-png.flaticon.com/128/8922/8922789.png"  
                             // onClick={this.increaseQuantity.bind(this)}
-                            onClick={this.increaseQuantity}
-
+                            // onClick={this.increaseQuantity}
+                            // onClick={() => this.props.onIncreaseQuantity(this.props.product)}
+                            onClick={() => onIncreaseQuantity(product)}
                         />
+
                         <img 
                             alt="Decrease" 
                             className="action-icons" 
                             src="https://cdn-icons-png.flaticon.com/128/8922/8922772.png" 
-                            onClick={this.decreaseQuantity}
+                            // onClick={this.decreaseQuantity}
+                            onClick={() => onDecreaseQuantity(product)}
                         />
-                        <img alt="Delete" className="action-icons" src="https://cdn-icons-png.flaticon.com/128/9153/9153963.png" onClick={this.deleteItem}/>
+
+                        <img 
+                            alt="Delete"
+                            className="action-icons" 
+                            src="https://cdn-icons-png.flaticon.com/128/9153/9153963.png" 
+                            // onClick={this.deleteItem}
+                            // onClick={() => onDeleteItem(id)}
+                            onClick={() => onDeleteItem(product)}
+                        /> 
+
                     </div>
                 </div>
             </div>
