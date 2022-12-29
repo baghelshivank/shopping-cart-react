@@ -1,7 +1,11 @@
 import React from "react";
 
-// "cartItem" is a class based React component while "App" is a function based React component. 
 class CartItem extends React.Component{ 
+// const CartItem = (props) => {.....}
+// Just as Navbar didn't require a state and therefore we converted it a functional component. Similarly, we can convert CartItem.js to a functional component as above. Alongside, we would be required to make following changes : render() method would no longer be required, "this" keywords should be removed (for e.g. convert "this.props.object" to "props.object")
+
+    // "cartItem" is a class based React component while "App" is a function based React component. 
+
     // Here, the class "CartItem" is inheriting from the "Component" class of the "React" (This is required when we need to access some variables of the parent class); therefore in order to create the constructor for "CartItem" class, we need to call the constructor of the parent class first (i.e., Component class) using "super()" 
 
 /*
@@ -267,7 +271,6 @@ Batching is a technique used to improve the performance of setState by reducing 
         );
     }
 }
-export default CartItem;
 
 // Styling with the help of Javascript Objects 
 const styles = {
@@ -278,4 +281,6 @@ const styles = {
         background : '#ccc'
     }
 }
+
+export default CartItem;
 

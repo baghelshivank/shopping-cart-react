@@ -16,12 +16,15 @@ There is an opinion that functional components show a greater performance compar
 import React from 'react';
 // import CartItem from './CartItem.js';
 import Cart from './Cart.js';
+import Navbar from './Navbar.js';
 
 function App() {
   return (
     <div className="App">
       {/* <h1> Cart </h1> */}
-        {/* <CartItem/> */}
+      {/* <CartItem/> */} 
+      
+        <Navbar />
         <Cart/>
 
     </div>
