@@ -29,35 +29,35 @@ class App extends React.Component {
             title : "Watch" ,
             price : 999,
             qty : 1, 
-            img : "",
+            img : "https://media.istockphoto.com/id/1363415192/photo/smart-watch-on-yellow-background.jpg?s=612x612&w=0&k=20&c=Jlk5j-GbvIae_9Solxw4AavogwMBmO1hpyUtC9GMUHI=",
             id : 1
         },
         {
             title : "Phone" ,
             price : 9999,
             qty : 1, 
-            img : "",
+            img : "https://media.istockphoto.com/id/1211592281/photo/woman-holding-and-touching-blank-screen-template-smart-phone-smart-phone-screen-is-empty-with.jpg?b=1&s=170667a&w=0&k=20&c=WuhVgaUf6LGftlL7PnIgmTH6Nv84OoR3L7hsURsGO5g=",
             id : 2
         },
         {
             title : "Laptop" ,
             price : 99999,
             qty : 1, 
-            img : "",
+            img : "https://media.istockphoto.com/id/1165781006/photo/women-typing-on-keyboard-of-modern-laptop-isolated-on-yellow-background.jpg?s=612x612&w=0&k=20&c=gOZAQ3_WNy1l5J5Czx_P1Y9gMHUUXU3VbYVgn-vM5hY=",
             id : 3
         },
         {
             title : "Tablet" ,
             price : 35000,
             qty : 1, 
-            img : "",
+            img : "https://media.istockphoto.com/id/1304769628/photo/tablet-with-headphones-and-pencil-on-yellow-background-top-view-copy-space.jpg?s=612x612&w=0&k=20&c=ZztrmyFcKCi1o0QtgEsHOjQ9Y1AlVRclKbwEPcIXbO8=",
             id : 4
         },
         {
             title : "Earpods" ,
             price : 999,
             qty : 1, 
-            img : "",
+            img : "https://media.istockphoto.com/id/1251818866/photo/white-wireless-headphones-on-yellow-background-with-ear-silicon-plug.jpg?s=612x612&w=0&k=20&c=XGKEpU1Or5CNbJTwhygHV-z4CcHLigHq4gce7oLC_b4=",
             id : 5
         }
        ]
@@ -113,6 +113,15 @@ class App extends React.Component {
       return count;
   }
 
+  getCartTotal = () => {
+    const {products} = this.state;
+    let cartTotal = 0;
+    products.forEach(product => {
+        cartTotal += product.qty * product.price; 
+    });
+      return cartTotal;
+  }
+
 
   render(){
     const {products} = this.state ;
@@ -130,7 +139,7 @@ class App extends React.Component {
          onDecreaseQuantity={this.handleDecreaseQuantity}
          onDeleteItem={this.handleDeleteItem}
         />
-
+          <div style={{ padding:10, fontSize:20, fontWeight:'bold', textAlign: "center" }}> TOTAL :  {this.getCartTotal()} </div>
       </div>
     );
   }

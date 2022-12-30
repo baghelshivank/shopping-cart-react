@@ -144,7 +144,7 @@ const Cart = (props) => {
 
             </div>
 
-            // We are passing id as an attribute to our each CartItem. The reason being lets say we have thousand "product"/components to render and if we need to make change to only one of the component, React has no way of differentiating between components (as they all go with the common name "CartItem"). Therefore we are passing id as well to each of them which wouldn't be displayed on the client side but is just for internal react purposes.  
+            // We are passing id as an attribute to our each CartItem. The reason being lets say we have thousand "product"/components to render and if we need to make change to only one of the component, React has no way of differentiating between components (as they all go with the common name "CartItem"). Therefore we are passing id(key) as well to each of them which wouldn't be displayed on the client side but is just for internal react purposes.  
             // Keys used within arrays should be unique among their siblings. However, they don’t need to be globally unique. 
 
     );
