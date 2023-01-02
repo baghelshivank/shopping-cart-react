@@ -205,6 +205,8 @@ Batching is a technique used to improve the performance of setState by reducing 
 
     }
 
+    // NOTE : The functions above are not being used anymore. 
+
     render(){  
         console.log("this is", this);
         console.log("this.props :", this.props);
