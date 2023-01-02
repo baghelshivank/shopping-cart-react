@@ -17,6 +17,7 @@ import React from 'react';
 // import CartItem from './CartItem.js';
 import Cart from './Cart.js';
 import Navbar from './Navbar.js';
+import Footer from './Footer.js'
 
 // function App() {        // We are going to move state from Cart.js to App.js, therefore converting App.js to class component.
 class App extends React.Component {
@@ -29,7 +30,7 @@ class App extends React.Component {
             title : "Watch" ,
             price : 999,
             qty : 1, 
-            img : "https://media.istockphoto.com/id/1363415192/photo/smart-watch-on-yellow-background.jpg?s=612x612&w=0&k=20&c=Jlk5j-GbvIae_9Solxw4AavogwMBmO1hpyUtC9GMUHI=",
+            img : "https://media.istockphoto.com/id/1403974074/photo/watch-isolated-on-yellow-background.jpg?s=612x612&w=0&k=20&c=iIp_OPf2U6omi_qaCoappr6j5K65QXu_yW7Ng1JmCjE=",
             id : 1
         },
         {
@@ -54,10 +55,10 @@ class App extends React.Component {
             id : 4
         },
         {
-            title : "Earpods" ,
+            title : "Headphones" ,
             price : 999,
             qty : 1, 
-            img : "https://media.istockphoto.com/id/1251818866/photo/white-wireless-headphones-on-yellow-background-with-ear-silicon-plug.jpg?s=612x612&w=0&k=20&c=XGKEpU1Or5CNbJTwhygHV-z4CcHLigHq4gce7oLC_b4=",
+            img : "https://media.istockphoto.com/id/1401030339/photo/wireless-headphones-on-a-yellow-background.jpg?s=612x612&w=0&k=20&c=xFfHJUtNls3qAxULzsUxYWgosxb9nLy-xfDj0tyzFb8=",
             id : 5
         }
        ]
@@ -139,7 +140,9 @@ class App extends React.Component {
          onDecreaseQuantity={this.handleDecreaseQuantity}
          onDeleteItem={this.handleDeleteItem}
         />
-          <div style={{ padding:10, fontSize:20, fontWeight:'bold', textAlign: "center" }}> TOTAL :  {this.getCartTotal()} </div>
+        <Footer
+         cartTotal={this.getCartTotal}
+        />
       </div>
     );
   }

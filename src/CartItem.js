@@ -278,9 +278,16 @@ const styles = {
     image : {
         height : 140,
         width : 140,
+        // aspectRatio : 3/2,
+        // objectFit : "contain",
+        objectFit : "cover",
+        // mixBlendMode : "color-burn",
+        // overflow : "hidden",
+
         borderRadius : 5,
         background : '#ccc'
     }
+    
 }
 
 export default CartItem;
