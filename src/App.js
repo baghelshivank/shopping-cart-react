@@ -26,6 +26,7 @@ class App extends React.Component {
     super();   
     this.state = {
        products : [
+      
         {
             title : "Watch" ,
             price : 999,
@@ -60,6 +61,13 @@ class App extends React.Component {
             qty : 1, 
             img : "https://media.istockphoto.com/id/1401030339/photo/wireless-headphones-on-a-yellow-background.jpg?s=612x612&w=0&k=20&c=xFfHJUtNls3qAxULzsUxYWgosxb9nLy-xfDj0tyzFb8=",
             id : 5
+        },
+          {
+          title : "Smart TV" ,
+          price : 150000,
+          qty : 1,
+          img : "https://media.istockphoto.com/id/1182345601/photo/tv-on-cabinet-in-modern-living-room-on-yellow-wall-background.jpg?s=612x612&w=0&k=20&c=emzAQ852RQN29AAitmD0gEWbE4iFmkzBf0m3Mbuve_s=",
+          id : 6
         }
        ]
     }
