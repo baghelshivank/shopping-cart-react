@@ -1,4 +1,6 @@
 import React from "react";
+import ReactDOM  from 'react-dom/client';
+import HP from "./HomePage/ProductPage.js";
 // class Navbar extends React.Component{ 
     // This currently is a class component, but since this doesn't have a state, we will change it to a funtional component. 
 const Navbar = (props) => {
@@ -6,6 +8,21 @@ const Navbar = (props) => {
   
     return(
         <div style={styles.nav}>
+
+        <div style={styles.productbutton}>
+                
+          <button onClick={() => {
+            console.log("go to product page");
+            const root = ReactDOM.createRoot(document.getElementById('root')).render(
+
+              <React.StrictMode>
+                <HP />
+              </React.StrictMode>
+          );
+
+          }}> Product </button>
+            </div>
+          
 
             <div style={styles.title}>
                 {"My Cart"}
@@ -57,6 +74,12 @@ const styles = {
       fontWeight:'bold',
       // marginTop:15, 
       padding:10
+    },
+
+    productbutton: {
+
+      textAlign:'center',
+      marginLeft:'50vw',
     },
     
    

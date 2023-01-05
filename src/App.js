@@ -139,7 +139,7 @@ class App extends React.Component {
         {/* <h1> Cart </h1> */}
         {/* <CartItem/> */} 
 
-        <Navbar 
+        <Navbar
         count={this.getCartCount()}
         />
         <Cart
