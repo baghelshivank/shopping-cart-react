@@ -19,58 +19,95 @@ import Cart from './Cart.js';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js'
 
+// import * as firebase from 'firebase';
+// import * as firebase from 'firebase/compat/app';
+import firebase from 'firebase/compat/app';
+
+
 // function App() {        // We are going to move state from Cart.js to App.js, therefore converting App.js to class component.
 class App extends React.Component {
 
   constructor(){
     super();   
     this.state = {
-       products : [
+      products: [],
+      loading : true
+
+      //  products : [
       
-        {
-            title : "Watch" ,
-            price : 999,
-            qty : 1, 
-            img : "https://media.istockphoto.com/id/1403974074/photo/watch-isolated-on-yellow-background.jpg?s=612x612&w=0&k=20&c=iIp_OPf2U6omi_qaCoappr6j5K65QXu_yW7Ng1JmCjE=",
-            id : 1
-        },
-        {
-            title : "Phone" ,
-            price : 9999,
-            qty : 1, 
-            img : "https://media.istockphoto.com/id/1211592281/photo/woman-holding-and-touching-blank-screen-template-smart-phone-smart-phone-screen-is-empty-with.jpg?b=1&s=170667a&w=0&k=20&c=WuhVgaUf6LGftlL7PnIgmTH6Nv84OoR3L7hsURsGO5g=",
-            id : 2
-        },
-        {
-            title : "Laptop" ,
-            price : 99999,
-            qty : 1, 
-            img : "https://media.istockphoto.com/id/1165781006/photo/women-typing-on-keyboard-of-modern-laptop-isolated-on-yellow-background.jpg?s=612x612&w=0&k=20&c=gOZAQ3_WNy1l5J5Czx_P1Y9gMHUUXU3VbYVgn-vM5hY=",
-            id : 3
-        },
-        {
-            title : "Tablet" ,
-            price : 35000,
-            qty : 1, 
-            img : "https://media.istockphoto.com/id/1304769628/photo/tablet-with-headphones-and-pencil-on-yellow-background-top-view-copy-space.jpg?s=612x612&w=0&k=20&c=ZztrmyFcKCi1o0QtgEsHOjQ9Y1AlVRclKbwEPcIXbO8=",
-            id : 4
-        },
-        {
-            title : "Headphones" ,
-            price : 999,
-            qty : 1, 
-            img : "https://media.istockphoto.com/id/1401030339/photo/wireless-headphones-on-a-yellow-background.jpg?s=612x612&w=0&k=20&c=xFfHJUtNls3qAxULzsUxYWgosxb9nLy-xfDj0tyzFb8=",
-            id : 5
-        },
-          {
-          title : "Smart TV" ,
-          price : 150000,
-          qty : 1,
-          img : "https://media.istockphoto.com/id/1182345601/photo/tv-on-cabinet-in-modern-living-room-on-yellow-wall-background.jpg?s=612x612&w=0&k=20&c=emzAQ852RQN29AAitmD0gEWbE4iFmkzBf0m3Mbuve_s=",
-          id : 6
-        }
-       ]
+      //   {
+      //       title : "Watch" ,
+      //       price : 999,
+      //       qty : 1, 
+      //       img : "https://media.istockphoto.com/id/1403974074/photo/watch-isolated-on-yellow-background.jpg?s=612x612&w=0&k=20&c=iIp_OPf2U6omi_qaCoappr6j5K65QXu_yW7Ng1JmCjE=",
+      //       id : 1
+      //   },
+      //   {
+      //       title : "Phone" ,
+      //       price : 9999,
+      //       qty : 1, 
+      //       img : "https://media.istockphoto.com/id/1211592281/photo/woman-holding-and-touching-blank-screen-template-smart-phone-smart-phone-screen-is-empty-with.jpg?b=1&s=170667a&w=0&k=20&c=WuhVgaUf6LGftlL7PnIgmTH6Nv84OoR3L7hsURsGO5g=",
+      //       id : 2
+      //   },
+      //   {
+      //       title : "Laptop" ,
+      //       price : 99999,
+      //       qty : 1, 
+      //       img : "https://media.istockphoto.com/id/1165781006/photo/women-typing-on-keyboard-of-modern-laptop-isolated-on-yellow-background.jpg?s=612x612&w=0&k=20&c=gOZAQ3_WNy1l5J5Czx_P1Y9gMHUUXU3VbYVgn-vM5hY=",
+      //       id : 3
+      //   },
+      //   {
+      //       title : "Tablet" ,
+      //       price : 35000,
+      //       qty : 1, 
+      //       img : "https://media.istockphoto.com/id/1304769628/photo/tablet-with-headphones-and-pencil-on-yellow-background-top-view-copy-space.jpg?s=612x612&w=0&k=20&c=ZztrmyFcKCi1o0QtgEsHOjQ9Y1AlVRclKbwEPcIXbO8=",
+      //       id : 4
+      //   },
+      //   {
+      //       title : "Headphones" ,
+      //       price : 999,
+      //       qty : 1, 
+      //       img : "https://media.istockphoto.com/id/1401030339/photo/wireless-headphones-on-a-yellow-background.jpg?s=612x612&w=0&k=20&c=xFfHJUtNls3qAxULzsUxYWgosxb9nLy-xfDj0tyzFb8=",
+      //       id : 5
+      //   },
+      //     {
+      //     title : "Smart TV" ,
+      //     price : 150000,
+      //     qty : 1,
+      //     img : "https://media.istockphoto.com/id/1182345601/photo/tv-on-cabinet-in-modern-living-room-on-yellow-wall-background.jpg?s=612x612&w=0&k=20&c=emzAQ852RQN29AAitmD0gEWbE4iFmkzBf0m3Mbuve_s=",
+      //     id : 6
+      //   }
+      //  ]
+
     }
+  }
+
+  componentDidMount(){
+    firebase
+    .firestore()
+    .collection('products')
+    .get()
+    .then((snapshot) => {
+      console.log("COMPONENT_DID_MOUNT");
+      console.log(snapshot);
+
+      snapshot.docs.map((doc) => {
+        console.log(doc.data());
+      });
+      const products = snapshot.docs.map((doc) => {
+        // return doc.data(); 
+
+        // Let's provide id generated by firebase for each of the products.
+        const data = doc.data();
+        data['id'] = doc.id;
+        return data;
+      })
+      this.setState({
+        // products : products 
+        products,  // a shorthand for the above line of code.
+        loading : false
+      })
+    })
   }
 
   handleIncreaseQuantity = (product) => {
@@ -133,7 +170,7 @@ class App extends React.Component {
 
 
   render(){
-    const {products} = this.state ;
+    const {products, loading} = this.state ;
     return (
       <div className="App">
         {/* <h1> Cart </h1> */}
@@ -148,6 +185,9 @@ class App extends React.Component {
          onDecreaseQuantity={this.handleDecreaseQuantity}
          onDeleteItem={this.handleDeleteItem}
         />
+
+        { loading && <h1> Loading Products ... </h1>}
+
         <Footer
          cartTotal={this.getCartTotal}
         />

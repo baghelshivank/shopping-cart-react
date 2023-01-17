@@ -130,6 +130,12 @@ Real life e.g. of componentDidUpdate is explained in the video where from a comp
 
 B) shouldComponentUpdate() method : 
 This is a react life cycle method that is rarely used when required. This method is used to override and stop the component from updating. This method is called(on change of some props or state)  before updating a component and if it returns false it does not update the component.
+The shouldComponentUpdate() method is a lifecycle method of a React component that is called before the component re-renders. It takes in two arguments:
+(i) nextProps: This argument is an object that represents the next set of props that the component will receive.
+(ii) nextState: This argument is an object that represents the next state of the component.
+The method should return a Boolean value, indicating whether the component should update or not. If the method returns true, the component will re-render, and if it returns false, the component will not update.
+The default behavior of shouldComponentUpdate() is to return true and re-render the component whenever the props or state change.
+
 C) getDerivedStateFromProps() method : 
 This is a rarely used static method, which does not have access to "this" inside this method. It is generally used to return some new state depending upon the new props we get (or on the change of state).
 D) getSnapshotBeforeUpdate() method : 

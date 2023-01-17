@@ -60,9 +60,9 @@ class HP extends React.Component {
 
             
                 {  
-            productsHP.map((product)=>{})
+            this.state.productsHP.map((product)=>{})
                 }
-                <button onClick={() => {
+                <button id="my-cart" onClick={() => {
                     // return App;
                     console.log("Hi");
                     const root = ReactDOM.createRoot(document.getElementById('root')).render(

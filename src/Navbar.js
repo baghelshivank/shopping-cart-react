@@ -20,7 +20,7 @@ const Navbar = (props) => {
               </React.StrictMode>
           );
 
-          }}> Product </button>
+          }}> Home </button>
             </div>
           
 
