@@ -80,6 +80,7 @@ class App extends React.Component {
       //  ]
 
     }
+    this.db = firebase.firestore();
   }
 
   componentDidMount(){
@@ -110,8 +111,10 @@ class App extends React.Component {
     //   })
     // })
 
-    firebase
-    .firestore()
+
+    // firebase
+    // .firestore()
+    this.db
     .collection('products')
 
     // onSnapshot() is a real time updates listener that will watch over our firebase and its callback function will be fired whenever any changes are made to the firebase. 
@@ -199,6 +202,24 @@ class App extends React.Component {
       return cartTotal;
   }
 
+  addProduct = () => {
+    this.db
+    .collection('products')
+    .add({
+      title : 'Wireless Mouse',
+      price : 900,
+      qty : 1,
+      img : ''
+    })
+    // add() will give us a promise and the reference of the object that we added above would be passed to then() below. 
+    .then((docRef) => {
+      console.log("Product has been added", docRef);
+    })
+    .catch((error) => {
+      console.log("Error : ", error);
+    })
+  }
+
 
   render(){
     const {products, loading} = this.state ;
@@ -210,6 +231,7 @@ class App extends React.Component {
         <Navbar
         count={this.getCartCount()}
         />
+        <button onClick={this.addProduct} style={{margin:10, padding:20, fontSize:20, borderRadius:5, backgroundColor:'lavenderblush'}}> Add a product to db </button>
         <Cart
          products={products}
          onIncreaseQuantity={this.handleIncreaseQuantity} 
