@@ -116,9 +116,13 @@ class App extends React.Component {
     // .firestore()
     this.db
       .collection('products')
+      //Querying the data 
+      // .where('price','>=',1000)
+      // .where('title','==','Laptop')
+      // .orderBy('price')  //by default its second parameter is 'asc'
+      .orderBy('price', 'desc')
 
       // onSnapshot() is a real time updates listener that will watch over our firebase and its callback function will be fired whenever any changes are made to the firebase. 
-
       .onSnapshot((snapshot) => {
         console.log("COMPONENT_DID_MOUNT");
         console.log(snapshot);
