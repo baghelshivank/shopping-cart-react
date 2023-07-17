@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+# Shopping Cart React
 
 ## Checkout the website [here](https://baghelshivank.github.io/shopping-cart-react/).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started with Create React App
 
-# Shopping Cart React
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This project is a simple shopping cart application built using React. It allows users to browse products, add them to a cart, and proceed to checkout. The application is designed to demonstrate the use of React components, state management, and basic e-commerce functionality.
 
